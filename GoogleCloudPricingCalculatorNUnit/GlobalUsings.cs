@@ -11,4 +11,3 @@ global using GoogleCloudPricingCalculatorNUnit.Utilities;
 global using GoogleCloudPricingCalculatorNUnit.Core;
 global using GoogleCloudPricingCalculatorNUnit.PageObjects;
 global using GoogleCloudPricingCalculatorNUnit.PageObjects.Components.Calculator;
-global using Selenium.Helper;

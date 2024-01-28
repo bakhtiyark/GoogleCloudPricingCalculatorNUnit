@@ -24,11 +24,13 @@ public class EstimateBlock(IWebDriver driver) : BaseComponent(driver, "#resultBl
 
     public void SendEstimateMessage()
     {
-        Actions actions = new Actions(driver);
         driver.SwitchTo().Frame(driver.FindElement(By.XPath("//devsite-iframe//iframe")));
         driver.SwitchTo().Frame(driver.FindElement(By.CssSelector("#myFrame")));
         SendEstimate.Email.Click();
-        actions.KeyDown(Keys.Control).SendKeys("v").KeyUp(Keys.Control).Build();
+        SendEstimate.Email.SendKeys(Keys.Control + "V");
+        WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(Constants.EMAIL_TIMEOUT));
+        wait.Until(ExpectedConditions.ElementToBeClickable(SendEstimate.SendEstimateButton));
+
         SendEstimate.SendEstimateButton.Click();
     }
 }
