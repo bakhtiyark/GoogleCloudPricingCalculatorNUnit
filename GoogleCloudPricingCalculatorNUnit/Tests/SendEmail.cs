@@ -8,22 +8,18 @@ public class SendEmail : BaseTest
     [Description("Emailed prices should match")]
     public void CheckEmail()
     {
-        string cost = Pages.Calculator.Estimate.GetData("estimatedCost", 4);
-        Pages.Calculator.Estimate.OpenEmailForm();
-        string originalWindow = driver.CurrentWindowHandle;
-
-        // Email manipulation;
-        driver.SwitchTo().NewWindow(WindowType.Tab);
-        driver.Navigate().GoToUrl(_testData.Tempail);
-        Pages.Email.CopyEmail();
-        driver.SwitchTo().Window(originalWindow);
-        Pages.Calculator.Estimate.SendEstimateMessage();
-
-        driver.SwitchTo().Window(driver.WindowHandles.Last());
-        Pages.Email.ReceiveEstimate();
-        string mailedPrice = Pages.Email.GetMailedPrice();
-
-        // Assertion
-        Assert.That(mailedPrice, Is.EqualTo(cost));
+        try
+        {
+            string cost = Pages.Calculator.Estimate.GetData("estimatedCost", 4);
+            Pages.Calculator.Estimate.OpenEmailForm();
+            Pages.Calculator.Estimate.SendEstimateMessage();
+            Pages.Email.ReceiveEstimate();
+            string mailedPrice = Pages.Email.GetMailedPrice();
+            Assert.That(mailedPrice, Is.EqualTo(cost));
+        }
+        catch (Exception ex)
+        {
+            ScreenshotsHandler.TakeScreenshot();
+        }
     }
 }

@@ -2,6 +2,7 @@ namespace GoogleCloudPricingCalculatorNUnit.PageObjects.Components.Calculator;
 
 public class EstimateBlock(IWebDriver driver) : BaseComponent(driver, "#resultBlock")
 {
+    private readonly TestData _testData = new();
     private readonly ComputeEngineEstimateComponent ComputerEngineEstimate = new(driver);
     private readonly SendEstimateEmailComponent SendEstimate = new(driver);
 
@@ -12,6 +13,14 @@ public class EstimateBlock(IWebDriver driver) : BaseComponent(driver, "#resultBl
         EmailFormButton.Click();
         var handles = driver.WindowHandles.ToList();
         driver.SwitchTo().Window(handles[0]);
+        
+        string originalWindow = driver.CurrentWindowHandle;
+
+        // Email manipulation;
+        driver.SwitchTo().NewWindow(WindowType.Tab);
+        driver.Navigate().GoToUrl(_testData.Tempail);
+        Pages.Email.CopyEmail();
+        driver.SwitchTo().Window(originalWindow);
     }
 
     public string GetData(string target, int index)

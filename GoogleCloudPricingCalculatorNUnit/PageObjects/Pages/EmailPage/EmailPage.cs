@@ -14,6 +14,8 @@ public class EmailPage(IWebDriver driver) : BasePage(driver)
 
     public void ReceiveEstimate()
     {
+        
+        driver.SwitchTo().Window(driver.WindowHandles.Last());
         WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(Constants.EMAIL_TIMEOUT));
         wait.Until(d => Email.Displayed);
         
