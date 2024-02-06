@@ -10,7 +10,6 @@ global using System.Collections.Generic;
 global using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 global using OpenQA.Selenium.Interactions;
 global using GoogleCloudPricingCalculatorNUnit.PageObjects.Components.Common;
-global using GoogleCloudPricingCalculatorNUnit.Utilities;
 global using GoogleCloudPricingCalculatorNUnit.Core;
 global using GoogleCloudPricingCalculatorNUnit.PageObjects;
 global using GoogleCloudPricingCalculatorNUnit.PageObjects.Components.Calculator;

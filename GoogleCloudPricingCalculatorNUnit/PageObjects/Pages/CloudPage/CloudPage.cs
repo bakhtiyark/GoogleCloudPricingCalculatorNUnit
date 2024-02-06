@@ -2,17 +2,18 @@ namespace GoogleCloudPricingCalculatorNUnit.PageObjects;
 
 public class CloudPage(IWebDriver driver) : BasePage(driver)
 {
-    private readonly HeaderComponent Header = new(driver);
+    private readonly HeaderComponent _header = new(driver);
+    private readonly IWebDriver _driver = driver;
 
     public void SearchText(string text)
     {
-        Header.SearchIcon.Click();
-        Header.SearchBox.SendKeys(text);
-        Header.Submit();
+        _header.SearchIcon.Click();
+        _header.SearchBox.SendKeys(text);
+        _header.Submit();
     }
 
     public void GoTo()
     {
-        driver.Navigate().GoToUrl(Constants.URL);
+        _driver.Navigate().GoToUrl(Constants.URL);
     }
 }

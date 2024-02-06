@@ -2,9 +2,9 @@ namespace GoogleCloudPricingCalculatorNUnit.Utilities;
 
 public class DriverHandler
 {
-    public static IWebDriver Driver { get; private set; }
+    public static IWebDriver Driver { get; private set; } = null!;
 
-    public DriverHandler(IWebDriver driver)
+    protected DriverHandler(IWebDriver driver)
     {
         Driver = driver;
         

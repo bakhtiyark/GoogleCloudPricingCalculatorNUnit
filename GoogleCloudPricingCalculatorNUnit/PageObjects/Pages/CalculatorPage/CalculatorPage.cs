@@ -3,6 +3,7 @@ public class CalculatorPage(IWebDriver driver) : BasePage(driver)
 {
     private readonly TabsBlock _tabs = new(driver);
     public readonly EstimateBlock Estimate = new(driver);
+    private readonly IWebDriver _driver = driver;
 
     public void FillForm(TestData testData)
     {
@@ -22,8 +23,8 @@ public class CalculatorPage(IWebDriver driver) : BasePage(driver)
 
     public void SwitchToTargetFrame()
     {
-        driver.SwitchTo().Frame(driver.FindElement(By.XPath("//devsite-iframe//iframe")));
-        driver.SwitchTo().Frame(driver.FindElement(By.CssSelector("#myFrame")));
+        _driver.SwitchTo().Frame(_driver.FindElement(By.XPath("//devsite-iframe//iframe")));
+        _driver.SwitchTo().Frame(_driver.FindElement(By.CssSelector("#myFrame")));
     }
 
     public void SubmitForm()

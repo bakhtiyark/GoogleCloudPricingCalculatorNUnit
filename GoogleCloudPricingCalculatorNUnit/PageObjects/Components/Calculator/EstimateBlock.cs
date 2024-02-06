@@ -5,22 +5,22 @@ public class EstimateBlock(IWebDriver driver) : BaseComponent(driver, "#resultBl
     private readonly TestData _testData = new();
     private readonly ComputeEngineEstimateComponent ComputerEngineEstimate = new(driver);
     private readonly SendEstimateEmailComponent SendEstimate = new(driver);
+    private readonly IWebDriver _driver = driver;
 
-    public IWebElement EmailFormButton => driver.FindElement(By.XPath("//button[@id='Email Estimate']"));
+    public IWebElement EmailFormButton => _driver.FindElement(By.XPath("//button[@id='Email Estimate']"));
 
     public void OpenEmailForm()
     {
         EmailFormButton.Click();
-        var handles = driver.WindowHandles.ToList();
-        driver.SwitchTo().Window(handles[0]);
+        var handles = _driver.WindowHandles.ToList();
+        _driver.SwitchTo().Window(handles[0]);
         
-        string originalWindow = driver.CurrentWindowHandle;
-
-        // Email manipulation;
-        driver.SwitchTo().NewWindow(WindowType.Tab);
-        driver.Navigate().GoToUrl(_testData.Tempail);
+        string originalWindow = _driver.CurrentWindowHandle;
+        
+        _driver.SwitchTo().NewWindow(WindowType.Tab);
+        _driver.Navigate().GoToUrl(_testData.Tempail);
         Pages.Email.CopyEmail();
-        driver.SwitchTo().Window(originalWindow);
+        _driver.SwitchTo().Window(originalWindow);
     }
 
     public string GetData(string target, int index)
@@ -33,11 +33,11 @@ public class EstimateBlock(IWebDriver driver) : BaseComponent(driver, "#resultBl
 
     public void SendEstimateMessage()
     {
-        driver.SwitchTo().Frame(driver.FindElement(By.XPath("//devsite-iframe//iframe")));
-        driver.SwitchTo().Frame(driver.FindElement(By.CssSelector("#myFrame")));
+        _driver.SwitchTo().Frame(_driver.FindElement(By.XPath("//devsite-iframe//iframe")));
+        _driver.SwitchTo().Frame(_driver.FindElement(By.CssSelector("#myFrame")));
         SendEstimate.Email.Click();
         SendEstimate.Email.SendKeys(Keys.Control + "V");
-        WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(Constants.EMAIL_TIMEOUT));
+        WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(Constants.EMAIL_TIMEOUT));
         wait.Until(ExpectedConditions.ElementToBeClickable(SendEstimate.SendEstimateButton));
 
         SendEstimate.SendEstimateButton.Click();
