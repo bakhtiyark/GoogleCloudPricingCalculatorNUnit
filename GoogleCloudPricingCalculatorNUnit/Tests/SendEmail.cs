@@ -2,7 +2,6 @@ namespace GoogleCloudPricingCalculatorNUnit;
 [TestFixture]
 public class SendEmail : BaseTest
 {
-    private readonly TestData _testData = new();
 
     [Test]
     [Description("Emailed prices should match")]
@@ -20,6 +19,7 @@ public class SendEmail : BaseTest
         catch (Exception ex)
         {
             ScreenshotsHandler.TakeScreenshot();
+            throw new Exception(nameof(ex));
         }
     }
 }

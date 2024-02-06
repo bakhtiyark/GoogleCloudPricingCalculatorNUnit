@@ -6,6 +6,7 @@ public class CloudPage(IWebDriver driver) : BasePage(driver)
 
     public void SearchText(string text)
     {
+        Header.SearchIcon.Click();
         Header.SearchBox.SendKeys(text);
         Header.Submit();
     }

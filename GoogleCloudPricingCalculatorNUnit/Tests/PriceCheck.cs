@@ -17,6 +17,7 @@ public class PriceCheck : BaseTest
         catch (Exception ex)
         {
             ScreenshotsHandler.TakeScreenshot();
+            throw new Exception(nameof(ex));
         }
     }
 
@@ -32,6 +33,7 @@ public class PriceCheck : BaseTest
         catch (Exception ex)
         {
             ScreenshotsHandler.TakeScreenshot();
+            throw new Exception(nameof(ex));
         }
     }
 
@@ -48,6 +50,7 @@ public class PriceCheck : BaseTest
         catch (Exception ex)
         {
             ScreenshotsHandler.TakeScreenshot();
+            throw new Exception(nameof(ex));
         }
     }
 
@@ -63,6 +66,7 @@ public class PriceCheck : BaseTest
         catch (Exception ex)
         {
             ScreenshotsHandler.TakeScreenshot();
+            throw new Exception(nameof(ex));
         }
     }
 
@@ -78,6 +82,7 @@ public class PriceCheck : BaseTest
         catch (Exception ex)
         {
             ScreenshotsHandler.TakeScreenshot();
+            throw new Exception(nameof(ex));
         }
     }
 
@@ -93,6 +98,7 @@ public class PriceCheck : BaseTest
         catch (Exception ex)
         {
             ScreenshotsHandler.TakeScreenshot();
+            throw new Exception(nameof(ex));
         }
     }
 }

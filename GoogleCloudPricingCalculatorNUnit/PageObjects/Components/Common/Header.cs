@@ -8,5 +8,6 @@ public class HeaderComponent : BaseComponent
         _helper = new Helpers(driver);
     }
 
-    public IWebElement SearchBox => _helper.LocateElement(Locators.Name, "q");
+    public IWebElement SearchIcon => _helper.LocateElement(Locators.ClassName, "YSM5S");
+    public IWebElement SearchBox => _helper.LocateElement(Locators.Xpath, "//*[@placeholder=\"Search\"]");
 }
